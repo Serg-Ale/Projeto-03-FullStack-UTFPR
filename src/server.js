@@ -8,7 +8,7 @@ const app = express();
 connectDb();
 
 app.use(json());
-app.use(authRouter);
+app.use("/auth", authRouter);
 
 const port = process.env.PORT || 3000;
 
