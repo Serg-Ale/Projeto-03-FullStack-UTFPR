@@ -19,8 +19,7 @@ const signin = async (body) => {
   );
   if (!passwordVerification) throw new Error("Email or password incorrect!");
 
-  // ToDO: JWT token generate
-  return "User successfully logged in";
+  return authRepository.generateToken(userExists._id);
 };
 
 export default { signin, signup };
