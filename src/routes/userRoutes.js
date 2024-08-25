@@ -1,20 +1,20 @@
 import { Router } from "express";
-import authController from "../controllers/authController.js";
+import userController from "../controllers/userController.js";
 import { joiValidation } from "../middlewares/joiValidation.js";
 import { signupValidation } from "../schemas/validations/signupValidation.js";
 import { signinValidation } from "../schemas/validations/signinValidation.js";
 
-const authRouter = Router();
+const userRouter = Router();
 
-authRouter.post(
+userRouter.post(
   "/signup",
   joiValidation(signupValidation),
-  authController.signup
+  userController.signup
 );
-authRouter.post(
+userRouter.post(
   "/signin",
   joiValidation(signinValidation),
-  authController.signin
+  userController.signin
 );
 
-export default authRouter;
+export default userRouter;
