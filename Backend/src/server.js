@@ -1,4 +1,5 @@
 import express, { json } from "express";
+import cors from "cors";
 import "dotenv/config";
 
 import { connectDb } from "./config/database.js";
@@ -8,6 +9,7 @@ import characterRouter from "./routes/characterRoutes.js";
 const app = express();
 connectDb();
 
+app.use(cors());
 app.use(json());
 app.use("/user", userRouter);
 app.use("/character", characterRouter);

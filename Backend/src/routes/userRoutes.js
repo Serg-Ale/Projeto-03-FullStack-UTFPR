@@ -11,6 +11,7 @@ userRouter.post(
   joiValidation(signupValidation),
   userController.signup
 );
+
 userRouter.post(
   "/signin",
   joiValidation(signinValidation),
