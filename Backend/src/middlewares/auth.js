@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import userRepository from "../repositories/userRepository.js";
 
-export const auth = (req, res, next) => {
+export const auth = async (req, res, next) => {
   const resError = (msg) => {
     return res.status(401).send({
       message: `${msg}`,

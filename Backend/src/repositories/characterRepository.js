@@ -10,7 +10,9 @@ const findByName = async (name) => {
 };
 
 const findAllByName = async (name) => {
-  return await CharacterSchema.find({ name: name });
+  // Usando uma expressão regular para buscar nomes parcialmente correspondentes
+  const regex = new RegExp(name, "i"); // "i" torna a busca case-insensitive
+  return await CharacterSchema.find({ name: { $regex: regex } });
 };
 
 export default { create, findByName, findAllByName };

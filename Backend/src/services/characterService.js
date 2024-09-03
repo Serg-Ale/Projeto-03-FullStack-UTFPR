@@ -1,7 +1,7 @@
 import characterRepository from "../repositories/characterRepository.js";
 
 const create = async (body, id) => {
-  if (!id) throw new Error("To create a character you need to be loged!");
+  if (!id) throw new Error("To create a character you need to be logged in!");
 
   const characterExists = await characterRepository.findByName(body.name);
   if (characterExists)

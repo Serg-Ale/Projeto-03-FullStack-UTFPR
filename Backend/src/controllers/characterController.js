@@ -13,7 +13,7 @@ const create = async (req, res) => {
 };
 
 const findAllByName = async (req, res) => {
-  const { name } = req.body;
+  const { name } = req.query; // Mudança para query params
   try {
     const characters = await characterService.findAllByName(name);
     return res.status(200).send(characters);
