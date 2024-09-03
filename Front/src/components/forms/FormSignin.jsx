@@ -29,7 +29,7 @@ const FormSignin = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSubmitForm)}
-      className="flex w-full flex-col items-center justify-center gap-4 pt-4 text-2xl"
+      className="flex w-full flex-col items-center justify-center gap-4"
     >
       <Input
         type={"email"}
