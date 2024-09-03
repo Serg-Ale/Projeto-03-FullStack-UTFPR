@@ -10,7 +10,7 @@ export async function connectDb() {
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 40000,
     });
-    console.log("Connected to MongoDB");
+    console.log("[Mongoose] Connected to MongoDB");
   } catch (error) {
     console.log(error.message);
   }

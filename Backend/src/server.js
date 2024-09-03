@@ -6,8 +6,10 @@ import { connectDb } from "./config/database.js";
 import userRouter from "./routes/userRoutes.js";
 import characterRouter from "./routes/characterRoutes.js";
 import { requestLimiter } from "./middlewares/requestLimiter.js";
+import { connectRedis } from "./config/redisClient.js";
 
 const app = express();
+connectRedis();
 connectDb();
 
 app.use(requestLimiter);
@@ -18,4 +20,6 @@ app.use("/character", characterRouter);
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Server is listen on port ${port}`));
+app.listen(port, () =>
+  console.log(`[Express] Server is listen on port ${port}`)
+);

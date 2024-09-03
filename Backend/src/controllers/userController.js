@@ -1,3 +1,4 @@
+import { redisClient } from "../config/redisClient.js";
 import userService from "../services/userService.js";
 
 const signup = async (req, res) => {
@@ -15,7 +16,19 @@ const signin = async (req, res) => {
   const body = req.body;
 
   try {
-    const token = await userService.signin(body);
+    let token = null;
+    const key = "signin:" + req.params.email;
+    const value = await redisClient.get(key);
+
+    if (value) {
+      token = JSON.parse(value);
+      console.log("[Redis] Cache hit baby :D");
+      return res.send(token);
+    }
+
+    token = await userService.signin(body);
+    await redisClient.set(key, JSON.stringify(token), { EX: 300 });
+
     return res.send(token);
   } catch (error) {
     return res.status(401).send(error.message);
