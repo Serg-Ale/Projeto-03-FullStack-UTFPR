@@ -1,12 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CharacterList from "./pages/CharacterList.jsx";
+import CharacterForm from "./pages/CharacterForm.jsx";
 import Signin from "./pages/Signin.jsx";
-import Character from "./pages/Character.jsx";
+import ReactDOM from "react-dom/client";
+import React from "react";
+import "./index.css";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Signin />,
+  },
   {
     path: "/signin",
     element: <Signin />,
@@ -14,7 +18,11 @@ const router = createBrowserRouter([
 
   {
     path: "/character",
-    element: <Character />,
+    element: <CharacterForm />,
+  },
+  {
+    path: "/list",
+    element: <CharacterList />,
   },
 ]);
 
