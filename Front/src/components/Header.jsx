@@ -7,7 +7,11 @@ const Header = () => {
       <h1 className="m-auto text-4xl font-bold text-neutral-200">
         Rick and Morty API Search
       </h1>
-      <Link to={"/signin"}>Login</Link>
+      <div className="flex flex-row gap-4">
+        <Link to={"/signin"}>Signin</Link>
+        <Link to={"/list"}>List</Link>
+        <Link to={"/character"}>Create a Character</Link>
+      </div>
     </header>
   );
 };
