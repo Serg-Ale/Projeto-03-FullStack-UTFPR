@@ -6,12 +6,7 @@ const MainLayout = ({ children }) => {
     <>
       <Header />
       <div className="m-auto mt-[15%] flex w-[40%] flex-col gap-8 rounded-xl bg-neutral-900 p-4 pt-4 text-center text-2xl text-neutral-200">
-        <div className="flex w-full items-center justify-between pb-4 text-neutral-200">
-          <h2 className="text-xl font-bold">Hello. Guest</h2>
-          <Link to={"/signin"} className="text-xl font-bold">
-            SignOut
-          </Link>
-        </div>
+        <div className="flex w-full items-center justify-between pb-4 text-neutral-200"></div>
         {children}
       </div>
     </>

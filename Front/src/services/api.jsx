@@ -43,7 +43,7 @@ export async function signout() {
 // Função para validar o token do usuário
 export async function validateToken() {
   try {
-    const response = await axiosInstance.get(`/`);
+    const response = await axiosInstance.get(`/user/me`);
     console.debug({ message: "validateToken response", ...response });
     return response;
   } catch (error) {
@@ -84,4 +84,9 @@ export async function createCharacter(data) {
     );
     throw error;
   }
+}
+
+export async function userLogged() {
+  const response = axiosInstance.get(`/user/me`);
+  return response;
 }
