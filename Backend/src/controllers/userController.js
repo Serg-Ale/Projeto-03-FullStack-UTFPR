@@ -22,4 +22,15 @@ const signin = async (req, res) => {
   }
 };
 
-export default { signin, signup };
+const userLogged = async (req, res) => {
+  const { _id: id } = res.locals.user;
+
+  try {
+    const user = await userService.userLogged(id);
+    return res.send(user);
+  } catch (err) {
+    return res.status(404).send(err.message);
+  }
+};
+
+export default { signin, signup, userLogged };

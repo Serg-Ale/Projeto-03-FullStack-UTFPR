@@ -22,4 +22,10 @@ const signin = async (body) => {
   return userRepository.generateToken(userExists._id);
 };
 
-export default { signin, signup };
+const userLogged = async (id) => {
+  const user = await userRepository.findById(id);
+  if (!user) throw new Error("User not found");
+  return user;
+};
+
+export default { signin, signup, userLogged };
