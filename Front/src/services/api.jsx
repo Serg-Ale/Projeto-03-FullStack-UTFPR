@@ -13,10 +13,13 @@ const axiosInstance = axios.create({
 export async function signin(data) {
   try {
     const response = await axiosInstance.post(`/user/signin`, data);
-    console.debug({ message: "signin response", ...response });
     // Armazenar o token no cookie após o login
-    if (response.data.token) {
-      Cookies.set("token", response.data.token);
+    if (response.data) {
+      Cookies.set("token", response.data);
+      console.debug({
+        message: "token saved on cookie",
+        ...response.data.token,
+      });
     }
     return response;
   } catch (error) {
@@ -52,11 +55,13 @@ export async function validateToken() {
   }
 }
 
-// Função para buscar personagens cadastrados pelo usuário
-export const userLogged = async () => {
+// Função para buscar personagens com base em um nome parcial
+export const getCharacter = async (name = "Smith") => {
   try {
-    const response = await axiosInstance.get(`/character`);
-    console.debug({ message: "userLogged response", ...response });
+    const response = await axiosInstance.get(`/character`, {
+      params: { name }, // Passando o nome como query parameter
+    });
+    console.debug({ message: "getCharacter response", ...response });
     return response;
   } catch (error) {
     console.error(
