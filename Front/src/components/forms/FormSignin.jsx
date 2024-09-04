@@ -6,8 +6,10 @@ import Button from "../Button";
 import Input from "../Input";
 import { signin } from "@/services/api";
 import Cookies from "js-cookie";
+import { useState } from "react";
 
 const FormSignin = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -22,7 +24,13 @@ const FormSignin = () => {
       Cookies.set("token", token.data, { expires: 1 });
       navigate("/character");
     } catch (error) {
-      console.error(error.message);
+      if (error.response) {
+        setErrorMessage(error.response.data.message || "Unknown error");
+      } else if (error.request) {
+        setErrorMessage("No response received from server.");
+      } else {
+        setErrorMessage("An error occurred: " + error.message);
+      }
     }
   };
 
@@ -31,6 +39,9 @@ const FormSignin = () => {
       onSubmit={handleSubmit(handleSubmitForm)}
       className="flex w-full flex-col items-center justify-center gap-4"
     >
+      {/* Renderiza mensagem de erro, se houver */}
+      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+
       <Input
         type={"email"}
         placeholder={"Email"}
@@ -46,6 +57,7 @@ const FormSignin = () => {
         name="password"
       />
       {errors.password && <InputError text={errors.password?.message} />}
+
       <Button text={"Login"} />
     </form>
   );

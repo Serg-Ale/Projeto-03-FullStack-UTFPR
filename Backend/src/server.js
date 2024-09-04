@@ -7,11 +7,13 @@ import userRouter from "./routes/userRoutes.js";
 import characterRouter from "./routes/characterRoutes.js";
 import { requestLimiter } from "./middlewares/requestLimiter.js";
 import { connectRedis } from "./config/redisClient.js";
+import compression from "compression";
 
 const app = express();
 connectRedis();
 connectDb();
 
+app.use(compression());
 app.use(requestLimiter);
 app.use(cors());
 app.use(json());
